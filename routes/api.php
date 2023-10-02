@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
-Route::get('customer',[CustomersController::class,'index']);
+Route::get('customer',[CustomersController::class,'index'])->name('customer');
 Route::get('customer/{id}',[CustomersController::class,'show']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {

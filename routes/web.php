@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 Route::get('view-2', function () {
     return view('view_2');
-});
+})->name('secondView');

@@ -1,0 +1,34 @@
+version: '1'
+name: api_customers
+
+services:
+  mariadb:
+    container_name: mariadb-customers
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=api_customers
+      - MYSQL_TCP_PORT=3306
+      - TZ=America/Mazatlan
+    ports:
+      - 3306:3306
+
+  laravel:
+    container_name: laravel-customers
+    image: php:73
+    depends_on:
+      - mariadb
+    links:
+      - mariadb
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_DATABASE=api_customers
+    working_dir: /app
+    ports:
+      - 8006:8006
+    volumes:
+      - ./:/app:delegated
+    command: ["php","artisan","serve", "--host", "0.0.0.0", "--port", "8006"]

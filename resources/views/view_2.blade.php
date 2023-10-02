@@ -9,5 +9,6 @@
 </head>
 <body>
     <p>This is the second view</p>
+    <a href="/">Return to main view</a>
 </body>
 </html>
